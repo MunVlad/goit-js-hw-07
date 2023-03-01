@@ -15,10 +15,18 @@ galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
 
 galleryContainer.addEventListener('click', onLinkClick);
 
-function onLinkClick(e) {
-  e.preventDefault();
-  const instance = basicLightbox.create(`<img width='1400' height='900' src='${e.target.dataset.source}'>`);
+function onLinkClick(event) {
+  event.preventDefault();
+  const instance = basicLightbox.create(`<img width='800' height='600' src="${event.target.dataset.source}">`)
   instance.show();
+
+  window.addEventListener('keydown', onEscPress);
+function onEscPress(event) {
+  if (event.code === 'Escape') {
+    instance.close();
+  }
+}
+
 }
 // const backdrop = document.querySelector('.js-backdrop');
 // const modalImg = document.querySelector('.modal__image');
