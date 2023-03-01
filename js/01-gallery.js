@@ -13,54 +13,18 @@ const galleryMarkup = galleryItems.map(({ preview, original, description }) => {
 }).join('');
 galleryContainer.insertAdjacentHTML('beforeend', galleryMarkup);
 
-galleryContainer.addEventListener('click', onLinkClick);
+galleryContainer.addEventListener('click', onImageClick);
 
-function onLinkClick(event) {
-  event.preventDefault();
-  const instance = basicLightbox.create(`<img width='800' height='600' src="${event.target.dataset.source}">`)
+function onImageClick(e) {
+  e.preventDefault();
+  const instance = basicLightbox.create(`<img width='800' height='600' src="${e.target.dataset.source}">`)
   instance.show();
 
   window.addEventListener('keydown', onEscPress);
-function onEscPress(event) {
-  if (event.code === 'Escape') {
+function onEscPress(e) {
+  if (e.code === 'Escape') {
     instance.close();
   }
 }
 
 }
-// const backdrop = document.querySelector('.js-backdrop');
-// const modalImg = document.querySelector('.modal__image');
-
-// galleryContainer.addEventListener('click', e => {
-//   e.preventDefault();
-
-//   const { target } = e;
-
-//   if (target.nodeName !== 'IMG') return;
-
-//   const originalImgSrc = target.dataset.source;
-//   const imgAlt = target.alt;
-
-//   modalImg.src = originalImgSrc;
-//   modalImg.alt = imgAlt;
-
-//   backdrop.classList.add('show');
-// });
-// modalImg.addEventListener('click', e => {
-//   if (e.target === e.currentTarget) {
-//     backdrop.classList.remove('show');
-//     modalImg.src = '';
-//     modalImg.alt = '';
-//   }
-// });
-
-// window.addEventListener('keydown', onEscPress);
-// function onEscPress(e) {
-//   if (e.code === 'Escape') {
-//   backdrop.classList.remove('show');
-//     modalImg.src = '';
-//     modalImg.alt = '';  
-//   }
-// }
-
-console.log(galleryItems);
