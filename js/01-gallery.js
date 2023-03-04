@@ -24,8 +24,6 @@ function onImageClick(e) {
 function onEscPress(e) {
   if (e.code === 'Escape') {
     instance.close(() => window.removeEventListener('keydown', onEscPress));
-    console.log(e);
-    
   } 
 }
 }
